@@ -4,8 +4,14 @@
   "version": "${version}",
   "name": "Simple Voice Booster",
   "description": "Raises the Simple Voice Chat microphone amplification limit so you can boost your mic up to 5000%.",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    "Breiwalker"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Breiwalker/Simple-Voice-Booster",
+    "sources": "https://github.com/Breiwalker/Simple-Voice-Booster",
+    "issues": "https://github.com/Breiwalker/Simple-Voice-Booster/issues"
+  },
   "license": "All-Rights-Reserved",
   "icon": "assets/simple_voice_booster/icon.png",
   "environment": "client",
@@ -21,6 +27,9 @@
     ],
     "voicechat": [
       "dev.breiwalker.simple_voice_booster.SimpleVoiceBoosterPlugin"
+    ],
+    "modmenu": [
+      "dev.breiwalker.simple_voice_booster.client.SimpleVoiceBoosterModMenu"
     ]
   },
   "mixins": [
@@ -33,7 +42,18 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}",
+    "minecraft": ">=26.1",
     "voicechat": ">=2.6.24"
+  },
+  "suggests": {
+    "modmenu": ">=21.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.source": "https://github.com/Breiwalker/Simple-Voice-Booster",
+        "modmenu.issues": "https://github.com/Breiwalker/Simple-Voice-Booster/issues"
+      }
+    }
   }
 }

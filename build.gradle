@@ -37,6 +37,10 @@ repositories {
     maven {
         url = 'https://api.modrinth.com/maven'
     }
+    // Repository for Mod Menu (optional integration)
+    maven {
+        url = 'https://maven.terraformersmc.com/releases'
+    }
 }
 
 dependencies {
@@ -54,6 +58,9 @@ dependencies {
     // compileOnly/runtimeOnly dependencies work. Not bundled; users install it separately.
     compileOnly "maven.modrinth:simple-voice-chat:${project.voicechat_version}"
     runtimeOnly "maven.modrinth:simple-voice-chat:${project.voicechat_version}"
+
+    // Mod Menu - compile-time only, present at runtime if the user has it installed
+    compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
