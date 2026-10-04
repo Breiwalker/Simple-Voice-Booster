@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "simple_voice_booster",
+  "version": "${version}",
+  "name": "Simple Voice Booster",
+  "description": "Raises the Simple Voice Chat microphone amplification limit so you can boost your mic up to 5000%.",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/simple_voice_booster/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "dev.breiwalker.simple_voice_booster.client.Simple_voice_boosterDataGenerator"
+    ],
+    "client": [
+      "dev.breiwalker.simple_voice_booster.client.Simple_voice_boosterClient"
+    ],
+    "main": [
+      "dev.breiwalker.simple_voice_booster.Simple_voice_booster"
+    ],
+    "voicechat": [
+      "dev.breiwalker.simple_voice_booster.SimpleVoiceBoosterPlugin"
+    ]
+  },
+  "mixins": [
+    "simple_voice_booster.mixins.json",
+    {
+      "config": "simple_voice_booster.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "voicechat": ">=2.6.24"
+  }
+}

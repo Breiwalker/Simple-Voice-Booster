@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.breiwalker.simple_voice_booster.mixin.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "AbstractSliderButtonAccessor",
+    "ClientConfigMixin",
+    "MicAmplificationSliderMixin",
+    "MicrophoneProcessorMixin",
+    "ScreenInvoker",
+    "SpeexManagerMixin",
+    "VoiceChatSettingsScreenMixin",
+    "VolumeManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
