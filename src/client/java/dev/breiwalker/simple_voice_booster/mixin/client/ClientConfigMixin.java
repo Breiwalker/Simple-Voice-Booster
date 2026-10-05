@@ -7,9 +7,10 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 /**
- * Extends the upper bound of the {@code microphone_gain} config entry so the
- * microphone amplification slider can be dragged up to {@link MicBoost#MAX_GAIN_DB}
- * (~5000%).
+ * Extends the upper bound of the {@code microphone_gain} config entry to the
+ * absolute ceiling {@link MicBoost#absoluteMaxGainDb()} (20000%). The user's own
+ * maximum is enforced dynamically in the slider span, the typed box and the gain
+ * path, so this bound never needs runtime mutation.
  * <p>
  * Simple Voice Chat's {@code VolumeManager.MAX_GAIN} is a compile-time constant, so
  * its value is inlined at every use site. We therefore patch the inlined constant in
@@ -20,7 +21,7 @@ public class ClientConfigMixin {
 
     @ModifyConstant(method = "<init>", constant = @Constant(doubleValue = 24.0D))
     private double simple_voice_booster$extendMicrophoneGainMax(double original) {
-        return MicBoost.MAX_GAIN_DB;
+        return MicBoost.absoluteMaxGainDb();
     }
 
 }

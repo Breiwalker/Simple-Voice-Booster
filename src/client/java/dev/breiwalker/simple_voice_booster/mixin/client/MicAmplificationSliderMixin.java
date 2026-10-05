@@ -28,15 +28,25 @@ public class MicAmplificationSliderMixin {
 
     // The slider maps its 0..1 value to a gain across the span
     // (MAX_GAIN - MIN_GAIN), which javac folds into the single constant 64.0
-    // (24 - -40). We widen that folded span to the extended maximum.
+    // (24 - -40). We widen that folded span to the user's configured maximum.
     @ModifyConstant(method = "gainToValue", constant = @Constant(doubleValue = 64.0D))
     private static double simple_voice_booster$gainToValueSpan(double original) {
-        return MicBoost.MAX_GAIN_DB - VolumeManager.MIN_GAIN;
+        return simple_voice_booster$span();
     }
 
     @ModifyConstant(method = "valueToGain", constant = @Constant(doubleValue = 64.0D))
     private static double simple_voice_booster$valueToGainSpan(double original) {
-        return MicBoost.MAX_GAIN_DB - VolumeManager.MIN_GAIN;
+        return simple_voice_booster$span();
+    }
+
+    /**
+     * The dB range the slider spans, derived from the user's configured maximum.
+     * Guaranteed positive so the slider direction never inverts.
+     */
+    @Unique
+    private static double simple_voice_booster$span() {
+        double span = MicBoost.maxGainDb() - VolumeManager.MIN_GAIN;
+        return span > 1.0E-6D ? span : 1.0E-6D;
     }
 
     @Redirect(
@@ -103,7 +113,7 @@ public class MicAmplificationSliderMixin {
 
     @Unique
     private static long simple_voice_booster$percentForValue(double value) {
-        double span = MicBoost.MAX_GAIN_DB - VolumeManager.MIN_GAIN;
+        double span = simple_voice_booster$span();
         double gainDb = value * span + VolumeManager.MIN_GAIN;
         return MicBoost.gainDbToPercent(gainDb);
     }

@@ -8,6 +8,7 @@
     "ClientConfigMixin",
     "MicAmplificationSliderMixin",
     "MicrophoneProcessorMixin",
+    "ScreenCloseMixin",
     "ScreenInvoker",
     "SpeexManagerMixin",
     "VoiceChatSettingsScreenMixin",

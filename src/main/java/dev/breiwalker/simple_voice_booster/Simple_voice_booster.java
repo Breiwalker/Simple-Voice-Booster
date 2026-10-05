@@ -6,5 +6,6 @@ public class Simple_voice_booster implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        SimpleVoiceBoosterConfig.load();
     }
 }

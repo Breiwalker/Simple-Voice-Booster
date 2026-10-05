@@ -1,6 +1,7 @@
 package dev.breiwalker.simple_voice_booster.mixin.client;
 
 import dev.breiwalker.simple_voice_booster.MicBoost;
+import dev.breiwalker.simple_voice_booster.SimpleVoiceBoosterConfig;
 import dev.breiwalker.simple_voice_booster.client.SimpleVoiceBoosterInput;
 import de.maxhenkel.voicechat.VoicechatClient;
 import de.maxhenkel.voicechat.gui.VoiceChatSettingsScreen;
@@ -24,6 +25,10 @@ public class VoiceChatSettingsScreenMixin {
 
     @Inject(method = "init", at = @At("HEAD"))
     private void simple_voice_booster$resetInput(CallbackInfo ci) {
+        // Re-read the config so a changed maximum is reflected the next time the
+        // settings screen is opened, and drop any stale widget references.
+        SimpleVoiceBoosterConfig.load();
+        SimpleVoiceBoosterInput.slider = null;
         SimpleVoiceBoosterInput.box = null;
     }
 
@@ -83,7 +88,8 @@ public class VoiceChatSettingsScreenMixin {
             simple_voice_booster$revertInput();
             return;
         }
-        percent = Math.max(1L, Math.min((long) MicBoost.MAX_AMPLIFICATION * 100L, percent));
+        percent = Math.max((long) SimpleVoiceBoosterConfig.MIN_BOOST_PERCENT,
+                Math.min((long) MicBoost.maxBoostPercent(), percent));
 
         double gainDb = MicBoost.percentToGainDb(percent);
         VoicechatClient.CLIENT_CONFIG.microphoneGain.set(gainDb).save();
@@ -93,7 +99,7 @@ public class VoiceChatSettingsScreenMixin {
             return;
         }
 
-        double span = MicBoost.MAX_GAIN_DB - VolumeManager.MIN_GAIN;
+        double span = MicBoost.maxGainDb() - VolumeManager.MIN_GAIN;
         double value = (gainDb - VolumeManager.MIN_GAIN) / span;
 
         SimpleVoiceBoosterInput.syncing = true;

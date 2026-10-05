@@ -1,4 +1,9 @@
 {
   "message.simple_voice_booster.microphone_amplification": "Boost: %s",
-  "message.simple_voice_booster.boosted": "Boosted with Simple Voice Booster"
+  "message.simple_voice_booster.boosted": "Boosted with Simple Voice Booster",
+  "screen.simple_voice_booster.title": "Simple Voice Booster",
+  "option.simple_voice_booster.max_boost": "Max boost: %s",
+  "option.simple_voice_booster.force_manual_gain": "Manual gain (disable AGC)",
+  "option.simple_voice_booster.hard_clip": "Hard-clip loud input",
+  "option.simple_voice_booster.open_voice_settings": "Open Voice Chat audio settings"
 }

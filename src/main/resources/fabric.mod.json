@@ -3,7 +3,7 @@
   "id": "simple_voice_booster",
   "version": "${version}",
   "name": "Simple Voice Booster",
-  "description": "Raises the Simple Voice Chat microphone amplification limit so you can boost your mic up to 5000%.",
+  "description": "Raises the Simple Voice Chat microphone amplification limit with a configurable boost (up to 20000%) and optional AGC / clipping overrides.",
   "authors": [
     "Breiwalker"
   ],
