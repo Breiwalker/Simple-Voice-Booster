@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 
-## [1.2] - Unreleased
+## [1.2] - 5.10.2026
 
 ### Added
 
@@ -24,7 +24,7 @@ All notable changes to this project are documented here.
 - `hardClip` now gates the hard-clip volume override; when disabled, Simple Voice
   Chat's original anti-clip guard is used unchanged.
 
-## [1.1] - 2026
+## [1.1] - 4.10.2026
 
 ### Added
 
@@ -32,7 +32,7 @@ All notable changes to this project are documented here.
   settings).
 - Mod icon.
 
-## [1.0] - 2026
+## [1.0] - 4.10.2026
 
 ### Added
 
